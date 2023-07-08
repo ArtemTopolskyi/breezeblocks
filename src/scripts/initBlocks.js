@@ -6,7 +6,7 @@ export const initBlocks = ({
   numberOfBlocks,
   blockRadius,
   fieldEndPoint,
-  initialVelocity = 3,
+  initialVelocity = 2,
 }) => {
   const blocks = Array.from({ length: numberOfBlocks }).map(() => {
     const initialCoord = new Point(
@@ -15,8 +15,8 @@ export const initBlocks = ({
     );
 
     const velocity = new Point(
-      randomSign(random(1, initialVelocity)),
-      randomSign(random(1, initialVelocity)),
+      randomSign(initialVelocity),
+      randomSign(initialVelocity),
     );
 
     return new Block(initialCoord, velocity, blockRadius);

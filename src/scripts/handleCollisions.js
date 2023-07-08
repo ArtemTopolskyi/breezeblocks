@@ -15,6 +15,20 @@ export const handleCollisions = (blocks, fieldEndPoint) => {
       handleTwoBlocksCollision(blocks[i], blocks[j]);
     }
   }
+
+  for (let i = 0; i < blocks.length; i++) {
+    if (blocks[i].hadVerticalCollision) {
+      blocks[i].hadVerticalCollision = false;
+    } else {
+      blocks[i].unlockVerticalInversion();
+    }
+
+    if (blocks[i].hadHorizontalCollision) {
+      blocks[i].hadHorizontalCollision = false;
+    } else {
+      blocks[i].unlockHorizontalInversion();
+    }
+  }
 }
 
 function handleCollisionWithFieldBorders(block, fieldEndPoint) {
@@ -56,13 +70,24 @@ function handleTwoBlocksCollision(firstBlock, secondBlock) {
   if (verticalIntersectionLength > horizontalIntersectionLength) {
     firstBlock.inverseXVelocity();
     secondBlock.inverseXVelocity();
+
+    firstBlock.lockHorizontalInversion();
+    secondBlock.lockHorizontalInversion();
   } else if (horizontalIntersectionLength > verticalIntersectionLength) {
     firstBlock.inverseYVelocity();
     secondBlock.inverseYVelocity();
+
+    firstBlock.lockVerticalInversion();
+    secondBlock.lockVerticalInversion();
   } else {
     firstBlock.inverseXVelocity();
     firstBlock.inverseYVelocity();
     secondBlock.inverseXVelocity();
     secondBlock.inverseYVelocity();
+
+    firstBlock.lockHorizontalInversion();
+    secondBlock.lockHorizontalInversion();
+    firstBlock.lockVerticalInversion();
+    secondBlock.lockVerticalInversion();
   }
 }

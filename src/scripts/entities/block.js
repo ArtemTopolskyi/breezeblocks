@@ -34,6 +34,24 @@ export class Block {
     return this.x + this.radius;
   }
 
+  lockVerticalInversion() {
+    this.verticalLock = true;
+    this.hadVerticalCollision = true;
+  }
+
+  unlockVerticalInversion() {
+    this.verticalLock = false;
+  }
+
+  lockHorizontalInversion() {
+    this.horizontalLock = true;
+    this.hadHorizontalCollision = true;
+  }
+
+  unlockHorizontalInversion() {
+    this.horizontalLock = false;
+  }
+
   increaseXVelocity() {
     this.xv = Math.abs(this.xv);
   }
@@ -51,10 +69,18 @@ export class Block {
   }
 
   inverseXVelocity() {
+    if (this.horizontalLock) {
+      return;
+    }
+
     this.xv = -this.xv;
   }
 
   inverseYVelocity() {
+    if (this.verticalLock) {
+      return;
+    }
+
     this.yv = -this.yv;
   }
 }
