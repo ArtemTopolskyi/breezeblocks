@@ -2,8 +2,8 @@ import { sign } from './math.helpers.js';
 import { TWO_PI, SUPERELLIPSE_N } from './constants.js';
 import { Point } from './entities/point.js';
 
-export const superellipse = (ctx, middlePoint, radius) => {
-  ctx.fillStyle = 'red';
+export const superellipse = (ctx, middlePoint, radius, color) => {
+  ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
   ctx.beginPath();
 

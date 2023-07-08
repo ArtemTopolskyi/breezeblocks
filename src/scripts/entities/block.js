@@ -3,6 +3,7 @@ export class Block {
     initialCoord,
     initialVelocity,
     radius,
+    color,
   ) {
     this.x = initialCoord.x;
     this.y = initialCoord.y;
@@ -11,6 +12,7 @@ export class Block {
     this.yv = initialVelocity.y;
 
     this.radius = radius;
+    this.color = color;
   }
 
   move() {
@@ -82,5 +84,9 @@ export class Block {
     }
 
     this.yv = -this.yv;
+  }
+
+  setColor(color) {
+    this.color = color;
   }
 }

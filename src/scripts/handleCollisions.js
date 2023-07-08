@@ -1,5 +1,6 @@
 import { intersectionOfTwoRangesLength } from './math.helpers.js';
 import { Range } from './entities/range.js';
+import { mixColors } from './mixColors.js';
 
 export const handleCollisions = (blocks, fieldEndPoint) => {
   for (let i = 0; i < blocks.length; i++) {
@@ -90,4 +91,7 @@ function handleTwoBlocksCollision(firstBlock, secondBlock) {
     firstBlock.lockVerticalInversion();
     secondBlock.lockVerticalInversion();
   }
+
+  firstBlock.setColor(mixColors(firstBlock.color, secondBlock.color));
+  secondBlock.setColor(mixColors(firstBlock.color, secondBlock.color));
 }
